@@ -1,17 +1,2 @@
 #!/bin/bash
-
-# Get the values of the WATER and STIR environment variables
-water="$WATER"
-stir="$STIR"
-
-# Convert the water and stir strings to decimal using ASCII codes
-water_dec=$(printf "%d" "'$water")
-stir_dec=$(printf "%d" "'$stir")
-
-# Add the decimal values and store the result in the BESTCHOL environment variable
-bestchol_dec=$((water_dec + stir_dec))
-export BESTCHOL=$(printf "\\$(printf %o "$bestchol_dec")")
-
-# Print the result
-echo "$BESTCHOL"
-
+printf "%o\n" $(( $((5#$(echo $WATER | tr water 01234)))+$((5#$(echo $STIR | tr stir. 01234))))) | tr 01234567 behlnort
