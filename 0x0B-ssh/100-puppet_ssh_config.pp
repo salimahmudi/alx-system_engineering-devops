@@ -1,15 +1,12 @@
-# make changes to config file using Puppet
+#!/usr/bin/env bash
+# Automating my Tasks using Puppet
 
-include stdlib
-
-file_line { 'Refuse to authenticate using a password':
-  ensure => present,
-  path   => '/etc/ssh/ssh_config',
-  line   => 'PasswordAuthentication no',
-}
-
-file_line { 'Use private key':
-  ensure => present,
-  path   => '/etc/ssh/ssh_config',
-  line   => 'IdentityFile ~/.ssh/school'
+file { '/etc/ssh/ssh_config':
+  ensure  => present,
+content => "
+    # SSH client configuration
+    Host *
+      IdentityFile ~/.ssh/school
+      PasswordAuthentication no
+  ",
 }
