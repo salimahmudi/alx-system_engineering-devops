@@ -3,14 +3,4 @@
 #+ That only shows listening sockets
 #+ That shows the PID and name of the program to which each socket belongs
 
-
-# Display listening ports with PID and program name
-
-# Display TCP ports
-echo "TCP ports:"
-sudo ss -tlnp | grep 'LISTEN'
-
-# Display UDP ports
-echo "UDP ports:"
-sudo ss -ulnp | grep 'UNCONN'
-
+sudo netstat -lp
